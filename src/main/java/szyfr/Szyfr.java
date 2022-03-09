@@ -15,6 +15,6 @@ public class Szyfr {
     }
 
     private byte generujKlucz(){
-
+        return 0;
     }
 }
