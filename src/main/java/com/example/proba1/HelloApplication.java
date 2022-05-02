@@ -1,5 +1,6 @@
 package com.example.proba1;
 
+import com.github.iarks.RandomOrgAPI.InvalidResponseException;
 import szyfr.Files;
 import szyfr.Szyfr;
 import javafx.application.Application;
@@ -20,21 +21,32 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) throws IOException {
-//        byte[] arr;
-//        arr = Files.readIntoBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\jaszczur.jpg");
-////        for(byte item : arr) {
-////            System.out.println(item);
-////        }
-//        Files.writeFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\dzialaj.jpg", arr);
-//        System.out.println("EYO");
-//        launch();
-        byte[] arr = {15,21};
+    public static void main(String[] args) throws IOException, InvalidResponseException {
+        byte[] arr;
+        arr = Files.readIntoBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\jaszczur.jpg");
         Szyfr s = new Szyfr(arr);
-        System.out.println(Arrays.toString(s.getWiadomosc()));
-        System.out.println(Arrays.toString(s.getKlucz()));
-        s.szyfruj();
-        System.out.println(Arrays.toString(s.getOutcome()));
 
+        Files.writeFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\klucz", s.getKlucz());
+        s.szyfruj();
+        Files.writeFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\outcome", s.getOutcome());
+        System.out.println("szyfrowanie done");
+
+        byte[] zaszyfrowane, klucz;
+        zaszyfrowane = Files.readIntoBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\outcome");
+        klucz = Files.readIntoBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\klucz");
+        s.setWiadomosc(zaszyfrowane);
+        s.setKlucz(klucz);
+        s.szyfruj();
+        Files.writeFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\dzialaj.jpg", s.getOutcome());
+        System.out.println("odszyfrowanie done");
+
+//        byte[] arr = {15,21};
+//        Szyfr s = new Szyfr(arr);
+//        System.out.println(Arrays.toString(s.getWiadomosc()));
+//        System.out.println(Arrays.toString(s.getKlucz()));
+//        s.szyfruj();
+//        System.out.println(Arrays.toString(s.getOutcome()));
+
+//        launch();
     }
 }

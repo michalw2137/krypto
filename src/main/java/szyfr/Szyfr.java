@@ -1,6 +1,9 @@
 package szyfr;
 
 import java.util.Random;
+import com.github.iarks.RandomOrgAPI.InvalidMethodCallException;
+import com.github.iarks.RandomOrgAPI.InvalidResponseException;
+import com.github.iarks.RandomOrgAPI.RandomNumber;
 
 public class Szyfr {
     private byte[] wiadomosc;
@@ -12,11 +15,14 @@ public class Szyfr {
         this.klucz = klucz;
     }
 
-    public Szyfr(byte[] wiadomosc) {
+    public Szyfr(byte[] wiadomosc) throws InvalidResponseException {
         this.wiadomosc = wiadomosc;
         this.klucz = new byte[(int)wiadomosc.length];
-        Random r = new Random();
-        r.nextBytes(klucz);
+        RandomNumber rn = new RandomNumber("5e860256-796f-4718-b356-bbbc260f1c75");
+        rn.generate(wiadomosc.length, 255, 0, true, "method");
+        for (int i = 0; i < wiadomosc.length; i++) {
+            klucz[i] = (byte)rn.getElementAt(i);
+        }
     }
 
     public void szyfruj() {
@@ -24,6 +30,18 @@ public class Szyfr {
         for (int i = 0; i < wiadomosc.length; i++) {
             outcome[i] = (byte) (wiadomosc[i] ^ klucz[i]);
         }
+    }
+
+    public void setWiadomosc(byte[] wiadomosc) {
+        this.wiadomosc = wiadomosc;
+    }
+
+    public void setKlucz(byte[] klucz) {
+        this.klucz = klucz;
+    }
+
+    public void setOutcome(byte[] outcome) {
+        this.outcome = outcome;
     }
 
     public byte[] getWiadomosc() {
