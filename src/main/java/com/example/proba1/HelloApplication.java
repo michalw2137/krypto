@@ -1,5 +1,6 @@
 package com.example.proba1;
 
+import szyfr.Files;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,7 +18,14 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
-        launch();
+    public static void main(String[] args) throws IOException {
+        byte[] arr;
+        arr = Files.readIntoBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\jaszczur.jpg");
+//        for(byte item : arr) {
+//            System.out.println(item);
+//        }
+        Files.writeFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\dzialaj.jpg", arr);
+        System.out.println("EYO");
+        //launch();
     }
 }
