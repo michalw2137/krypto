@@ -12,8 +12,8 @@
     </padding>
    <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0">
       <children>
-         <TextField fx:id="input" alignment="TOP_CENTER" layoutX="20.0" layoutY="123.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="291.0" prefWidth="218.0" promptText="Wprowadź tekst" snapToPixel="false" />
-         <TextField fx:id="output" alignment="TOP_CENTER" layoutX="362.0" layoutY="123.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="291.0" prefWidth="218.0" promptText="Wynik operacji" snapToPixel="false" />
+         <TextField fx:id="input" alignment="TOP_LEFT" layoutX="20.0" layoutY="123.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="291.0" prefWidth="218.0" promptText="Wprowadź tekst" snapToPixel="false" />
+         <TextField fx:id="output" alignment="TOP_LEFT" layoutX="362.0" layoutY="123.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="291.0" prefWidth="218.0" promptText="Wynik operacji" snapToPixel="false" />
          <Button fx:id="deszyfruj" layoutX="267.0" layoutY="312.0" mnemonicParsing="false" onAction="#deszyfruj" text="Deszyfruj" />
          <Button fx:id="szyfruj" layoutX="274.0" layoutY="256.0" mnemonicParsing="false" onAction="#szyfruj" text="Szyfruj" />
          <TextField fx:id="kluczField" layoutX="225.0" layoutY="481.0" promptText="Klucz" />

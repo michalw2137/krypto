@@ -1,7 +1,5 @@
 package szyfr;
 
-import java.util.Random;
-import com.github.iarks.RandomOrgAPI.InvalidMethodCallException;
 import com.github.iarks.RandomOrgAPI.InvalidResponseException;
 import com.github.iarks.RandomOrgAPI.RandomNumber;
 
@@ -27,8 +25,14 @@ public class Szyfr {
 
     public void szyfruj() {
         this.outcome = new byte[(int) wiadomosc.length];
-        for (int i = 0; i < wiadomosc.length; i++) {
+        int i = 0;
+        while( i < wiadomosc.length - wiadomosc[wiadomosc.length - 1] -1) {
             outcome[i] = (byte) (wiadomosc[i] ^ klucz[i]);
+            i++;
+        }
+        while( i<wiadomosc.length){
+            outcome[i] = wiadomosc[i];
+            i++;
         }
     }
 

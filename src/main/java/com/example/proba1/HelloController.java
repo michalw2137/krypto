@@ -11,8 +11,7 @@ import szyfr.Szyfr;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import static szyfr.Files.convertBytesToString;
-import static szyfr.Files.getStringFromFile;
+import static szyfr.Files.*;
 
 public class HelloController {
     @FXML
@@ -37,19 +36,19 @@ public class HelloController {
             arr = Files.readFileIntoBytes(inputPath.getText());
             Szyfr s = new Szyfr(arr);
 
-            Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\klucz.txt", convertBytesToString(s.getKlucz()));
+            Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\klucz", convertBytesToString(s.getKlucz()));
             s.szyfruj();
-            Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\outcome.txt", convertBytesToString(s.getOutcome()));
+            Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\outcome", convertBytesToString(s.getOutcome()));
             output.setText("szyfrowanie pomyślnie zakończone");
-            outputPath.setText("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\outcome.txt");
-            kluczField.setText("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\klucz.txt");
+            outputPath.setText("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\outcome");
+            kluczField.setText("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\klucz");
         } else {
             arr = Files.stringToBytes(input.getText());
             Szyfr s = new Szyfr(arr);
 
-            Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\klucz.txt", convertBytesToString(s.getKlucz()));
+            Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\klucz", convertBytesToString(s.getKlucz()));
             s.szyfruj();
-            Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\outcome.txt", convertBytesToString(s.getOutcome()));
+            Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\outcome", convertBytesToString(s.getOutcome()));
             output.setText(convertBytesToString(s.getOutcome()));
             kluczField.setText(convertBytesToString(s.getKlucz()));
         }
@@ -62,15 +61,14 @@ public class HelloController {
             klucz = Files.readBytesfromString(getStringFromFile(kluczField.getText()));
             Szyfr s = new Szyfr(zaszyfrowane, klucz);
             s.szyfruj();
-            Files.writeFileFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\koniec.txt", s.getOutcome());
+            Files.writeFileFromBytesWithExtension("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\koniec", s.getOutcome());
             output.setText("odszyfrowanie pomyślnie zakończone");
-            outputPath.setText("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\koniec.txt");
+            outputPath.setText(createFullPath("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\koniec", s.getOutcome()));
         } else {
             zaszyfrowane = Files.readBytesfromString(input.getText());
             klucz = Files.readBytesfromString(kluczField.getText());
             Szyfr s = new Szyfr(zaszyfrowane, klucz);
             s.szyfruj();
-            Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\wynik.txt", convertBytesToString(s.getOutcome()));
             String test = new String(s.getOutcome(), StandardCharsets.UTF_8);
             output.setText(test);
         }

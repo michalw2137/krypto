@@ -2,23 +2,58 @@ package szyfr;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.Iterator;
+import java.util.Optional;
 
 public class Files {
 
-    public static byte[] readFileIntoBytes(String filePath) throws IOException {
+    public static byte[] readFileIntoBytesAddExtension(String filePath) throws IOException {
         File file = new File(filePath);
+        String extension = filePath.substring(filePath.lastIndexOf(".") + 1);
         FileInputStream fl = new FileInputStream(file);
-        byte[] arr = new byte[(int)file.length()];
+        byte[] arr = new byte[(int)file.length() + extension.length() + 1];
+        fl.read(arr);
+        int j = extension.length()-1;
+        for(int i = arr.length-2; i>arr.length - 2 -extension.length(); i--){
+            arr[i]=(byte)extension.charAt(j);
+            j--;
+        }
+        arr[arr.length-1]=(byte)extension.length();
+        fl.close();
+        return arr;
+    }
+    public static byte[] readFileIntoBytes(String filePath) throws IOException {
+        File file = new File(filePath);;
+        FileInputStream fl = new FileInputStream(file);
+        byte[] arr = new byte[(int)file.length() +  1];
         fl.read(arr);
         fl.close();
         return arr;
     }
-
     public static void writeFileFromBytes(String filePath, byte[] arr) throws IOException {
         File file = new File(filePath);
         OutputStream os = new FileOutputStream(file);
         os.write(arr);
+        os.close();
+    }
+    public static String createFullPath(String filePath, byte[] arr) throws IOException {
+        int extensionSize = arr[arr.length -1];
+        byte[] temp = new byte[extensionSize];
+        int j = extensionSize-1;
+        for(int i = arr.length-2; i>arr.length - 2 - extensionSize; i--){
+            temp[j]=(byte)arr[i];
+            j--;
+        }
+        String s = new String(temp, StandardCharsets.UTF_8);
+        System.out.println(s);
+        return new StringBuilder().append(filePath).append(".").append(s).toString();
+    }
+    public static void writeFileFromBytesWithExtension(String filePath, byte[] arr) throws IOException {
+        File file = new File(createFullPath(filePath, arr));
+        OutputStream os = new FileOutputStream(file);
+        for(int i = 0; i>arr.length - 1 - arr[arr.length - 1]; i++){
+            os.write(arr[i]);
+        }
+
         os.close();
     }
 
