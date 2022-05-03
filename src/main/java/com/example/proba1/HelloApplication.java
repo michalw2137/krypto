@@ -16,7 +16,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 600);
-        stage.setTitle("Hello!");
+        stage.setTitle("KRYPTOGRAFIA");
         stage.setScene(scene);
         stage.show();
     }
@@ -41,14 +41,14 @@ public class HelloApplication extends Application {
 //        Files.writeFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\wynik.txt", s.getOutcome());
 //        System.out.println("odszyfrowanie done");
 
-        byte[] arr = {15,21};
-        Szyfr s = new Szyfr(arr);
-        Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\testing.txt", arr);
-        System.out.println("huju");
-        byte[] arr2 = Files.readBytesfromString("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\testing.txt");
-        System.out.println(Arrays.toString(arr2));
-        System.out.println("cipa");
+//        byte[] arr = {15,21};
+//        Szyfr s = new Szyfr(arr);
+//        Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\testing.txt", arr);
+//        System.out.println("huju");
+//        byte[] arr2 = Files.readBytesfromString("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\testing.txt");
+//        System.out.println(Arrays.toString(arr2));
+//        System.out.println("cipa");
 
-        //launch();
+        launch();
     }
 }

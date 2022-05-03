@@ -11,6 +11,9 @@ import szyfr.Szyfr;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
+import static szyfr.Files.convertBytesToString;
+import static szyfr.Files.getStringFromFile;
+
 public class HelloController {
     @FXML
     private TextField input;
@@ -34,9 +37,9 @@ public class HelloController {
             arr = Files.readFileIntoBytes(inputPath.getText());
             Szyfr s = new Szyfr(arr);
 
-            Files.writeFileFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\klucz.txt", s.getKlucz());
+            Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\klucz.txt", convertBytesToString(s.getKlucz()));
             s.szyfruj();
-            Files.writeFileFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\outcome.txt", s.getOutcome());
+            Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\outcome.txt", convertBytesToString(s.getOutcome()));
             output.setText("szyfrowanie pomyślnie zakończone");
             outputPath.setText("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\outcome.txt");
             kluczField.setText("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\klucz.txt");
@@ -44,30 +47,30 @@ public class HelloController {
             arr = Files.stringToBytes(input.getText());
             Szyfr s = new Szyfr(arr);
 
-            Files.writeFileFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\klucz.txt", s.getKlucz());
+            Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\klucz.txt", convertBytesToString(s.getKlucz()));
             s.szyfruj();
-            Files.writeFileFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\outcome.txt", s.getOutcome());
-            String test = new String(s.getOutcome(), StandardCharsets.UTF_8);
-            output.setText(test);
+            Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\outcome.txt", convertBytesToString(s.getOutcome()));
+            output.setText(convertBytesToString(s.getOutcome()));
+            kluczField.setText(convertBytesToString(s.getKlucz()));
         }
     }
     @FXML
     protected void deszyfruj() throws IOException, InvalidResponseException {
         byte[] zaszyfrowane, klucz;
         if(input.getText().isEmpty()) {
-            zaszyfrowane = Files.readFileIntoBytes(inputPath.getText());
-            klucz = Files.readFileIntoBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\klucz.txt");
+            zaszyfrowane = Files.readBytesfromString(getStringFromFile(inputPath.getText()));
+            klucz = Files.readBytesfromString(getStringFromFile(kluczField.getText()));
             Szyfr s = new Szyfr(zaszyfrowane, klucz);
             s.szyfruj();
             Files.writeFileFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\koniec.txt", s.getOutcome());
             output.setText("odszyfrowanie pomyślnie zakończone");
             outputPath.setText("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\koniec.txt");
         } else {
-            zaszyfrowane = Files.stringToBytes(input.getText());
-            klucz = Files.stringToBytes(kluczField.getText());
+            zaszyfrowane = Files.readBytesfromString(input.getText());
+            klucz = Files.readBytesfromString(kluczField.getText());
             Szyfr s = new Szyfr(zaszyfrowane, klucz);
             s.szyfruj();
-            Files.writeFileFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\wynik.txt", s.getOutcome());
+            Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\wynik.txt", convertBytesToString(s.getOutcome()));
             String test = new String(s.getOutcome(), StandardCharsets.UTF_8);
             output.setText(test);
         }

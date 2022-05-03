@@ -26,19 +26,22 @@ public class Files {
         return string.getBytes(StandardCharsets.UTF_8);
     }
 
-
-    public static void writeStringFromBytes(String filePath, byte[] arr) throws IOException {
+    public static String convertBytesToString(byte[] arr) throws IOException {
         StringBuilder sb = new StringBuilder();
         for (int j = 0; j<arr.length; j++) {
             sb.append(String.format("%8s", Integer.toBinaryString(arr[j] & 0xFF)).replace(' ', '0'));
         }
+        return sb.toString();
+    }
+
+    public static void writeStringFromBytes(String filePath, String arr) throws IOException {
         File file = new File(filePath);
         OutputStream os = new FileOutputStream(file);
-        os.write(sb.toString().getBytes(StandardCharsets.UTF_8));
+        os.write(arr.getBytes(StandardCharsets.UTF_8));
         os.close();
     }
 
-    public static byte[] readBytesfromString(String filePath) throws FileNotFoundException {
+    public static String getStringFromFile(String filePath){
         StringBuilder builder = new StringBuilder();
         try (BufferedReader buffer = new BufferedReader(
                 new FileReader(filePath))) {
@@ -51,8 +54,12 @@ public class Files {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return builder.toString();
+    }
+    public static byte[] readBytesfromString(String binaryString) throws FileNotFoundException {
+
         int splitSize = 8;
-        String binaryString = builder.toString();
+
         if(binaryString.length() % splitSize == 0){
             int index = 0;
             int position = 0;
