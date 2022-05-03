@@ -2,8 +2,6 @@ package szyfr;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Optional;
 
 public class Files {
 
@@ -22,20 +20,7 @@ public class Files {
         fl.close();
         return arr;
     }
-    public static byte[] readFileIntoBytes(String filePath) throws IOException {
-        File file = new File(filePath);;
-        FileInputStream fl = new FileInputStream(file);
-        byte[] arr = new byte[(int)file.length() +  1];
-        fl.read(arr);
-        fl.close();
-        return arr;
-    }
-    public static void writeFileFromBytes(String filePath, byte[] arr) throws IOException {
-        File file = new File(filePath);
-        OutputStream os = new FileOutputStream(file);
-        os.write(arr);
-        os.close();
-    }
+
     public static String createFullPath(String filePath, byte[] arr) throws IOException {
         int extensionSize = arr[arr.length -1];
         byte[] temp = new byte[extensionSize];
@@ -47,6 +32,7 @@ public class Files {
         String s = new String(temp, StandardCharsets.UTF_8);
         return new StringBuilder().append(filePath).append(".").append(s).toString();
     }
+
     public static void writeFileFromBytesWithExtension(String filePath, byte[] arr) throws IOException {
         File file = new File(createFullPath(filePath, arr));
         OutputStream os = new FileOutputStream(file);
@@ -92,6 +78,7 @@ public class Files {
         }
         return builder.toString();
     }
+    
     public static byte[] readBytesfromString(String binaryString) throws FileNotFoundException {
 
         int splitSize = 8;

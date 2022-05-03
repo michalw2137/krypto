@@ -1,18 +1,13 @@
 package com.example.proba1;
 
 import com.github.iarks.RandomOrgAPI.InvalidResponseException;
-import szyfr.Files;
-import szyfr.Szyfr;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Arrays;
 
-import static szyfr.Files.*;
-import static szyfr.Files.getStringFromFile;
 
 public class HelloApplication extends Application {
     @Override

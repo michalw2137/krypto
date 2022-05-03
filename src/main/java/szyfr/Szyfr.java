@@ -36,21 +36,6 @@ public class Szyfr {
         }
     }
 
-    public void setWiadomosc(byte[] wiadomosc) {
-        this.wiadomosc = wiadomosc;
-    }
-
-    public void setKlucz(byte[] klucz) {
-        this.klucz = klucz;
-    }
-
-    public void setOutcome(byte[] outcome) {
-        this.outcome = outcome;
-    }
-
-    public byte[] getWiadomosc() {
-        return wiadomosc;
-    }
 
     public byte[] getKlucz() {
         return klucz;
