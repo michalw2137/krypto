@@ -2,6 +2,7 @@ package szyfr;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Optional;
 
 public class Files {
@@ -44,16 +45,16 @@ public class Files {
             j--;
         }
         String s = new String(temp, StandardCharsets.UTF_8);
-        System.out.println(s);
         return new StringBuilder().append(filePath).append(".").append(s).toString();
     }
     public static void writeFileFromBytesWithExtension(String filePath, byte[] arr) throws IOException {
         File file = new File(createFullPath(filePath, arr));
         OutputStream os = new FileOutputStream(file);
-        for(int i = 0; i>arr.length - 1 - arr[arr.length - 1]; i++){
-            os.write(arr[i]);
+        byte[] temp = new byte[arr.length - 1 - arr[arr.length - 1]];
+        for(int i = 0; i<arr.length - 1 - arr[arr.length - 1]; i++){
+            temp[i]=arr[i];
         }
-
+        os.write(temp);
         os.close();
     }
 

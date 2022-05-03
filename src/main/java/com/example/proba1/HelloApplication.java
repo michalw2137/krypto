@@ -27,23 +27,21 @@ public class HelloApplication extends Application {
     public static void main(String[] args) throws IOException, InvalidResponseException {
 
         //D:\polibuda\sem4\repo\wspolbiezne\krypto\testFiles\test.txt
-        byte[] arr;
-        arr = Files.readFileIntoBytesAddExtension("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\test.txt");
-        Szyfr s = new Szyfr(arr);
-        System.out.println(Arrays.toString(s.getWiadomosc()));
-        System.out.println(Arrays.toString(s.getKlucz()));
-        Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\klucz", convertBytesToString(s.getKlucz()));
-        s.szyfruj();
-        System.out.println(Arrays.toString(s.getOutcome()));
-        System.out.println(Arrays.toString(s.getKlucz()));
-        Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\outcome", convertBytesToString(s.getOutcome()));
-        System.out.println("HUJ");
-        byte[] zaszyfrowane, klucz;
-        zaszyfrowane = Files.readBytesfromString(getStringFromFile("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\outcome"));
-        klucz = Files.readBytesfromString(getStringFromFile("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\klucz"));
-        Szyfr s2 = new Szyfr(zaszyfrowane, klucz);
-        s2.szyfruj();
-        System.out.println(createFullPath("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\koniec", s.getOutcome()));
+        //D:\polibuda\sem4\repo\wspolbiezne\krypto\testFiles\dwa.klmn
+//        byte[] arr;
+//        arr = Files.readFileIntoBytesAddExtension("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\test.txt");
+//        Szyfr s = new Szyfr(arr);
+//        Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\klucz", convertBytesToString(s.getKlucz()));
+//        s.szyfruj();
+//        Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\outcome", convertBytesToString(s.getOutcome()));
+//
+//        byte[] zaszyfrowane, klucz;
+//        zaszyfrowane = Files.readBytesfromString(getStringFromFile("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\outcome"));
+//        klucz = Files.readBytesfromString(getStringFromFile("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\klucz"));
+//        Szyfr s2 = new Szyfr(zaszyfrowane, klucz);
+//        s2.szyfruj();
+//        Files.writeFileFromBytesWithExtension("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\koniec", s2.getOutcome());
+//        System.out.println("PIZDA");
 
 //
 //        byte[] zaszyfrowane, klucz;
