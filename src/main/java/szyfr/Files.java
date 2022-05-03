@@ -78,7 +78,7 @@ public class Files {
         }
         return builder.toString();
     }
-    
+
     public static byte[] readBytesfromString(String binaryString) throws FileNotFoundException {
 
         int splitSize = 8;

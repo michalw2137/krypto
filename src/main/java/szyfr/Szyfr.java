@@ -3,6 +3,8 @@ package szyfr;
 import com.github.iarks.RandomOrgAPI.InvalidResponseException;
 import com.github.iarks.RandomOrgAPI.RandomNumber;
 
+import java.util.Random;
+
 public class Szyfr {
     private byte[] wiadomosc;
     private byte[] klucz;
@@ -21,6 +23,7 @@ public class Szyfr {
         for (int i = 0; i < wiadomosc.length; i++) {
             klucz[i] = (byte)rn.getElementAt(i);
         }
+//        new Random().nextBytes(klucz);
     }
 
     public void szyfruj() {
