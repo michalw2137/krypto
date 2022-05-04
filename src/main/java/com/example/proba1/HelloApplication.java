@@ -36,7 +36,6 @@ public class HelloApplication extends Application {
 //        Szyfr s2 = new Szyfr(zaszyfrowane, klucz);
 //        s2.szyfruj();
 //        Files.writeFileFromBytesWithExtension("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\koniec", s2.getOutcome());
-//        System.out.println("PIZDA");
 
 //
 //        byte[] zaszyfrowane, klucz;
@@ -51,10 +50,8 @@ public class HelloApplication extends Application {
 //        byte[] arr = {15,21};
 //        Szyfr s = new Szyfr(arr);
 //        Files.writeStringFromBytes("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\testing.txt", arr);
-//        System.out.println("huju");
 //        byte[] arr2 = Files.readBytesfromString("D:\\polibuda\\sem4\\repo\\wspolbiezne\\krypto\\testFiles\\testing.txt");
 //        System.out.println(Arrays.toString(arr2));
-//        System.out.println("cipa");
 
         launch();
     }

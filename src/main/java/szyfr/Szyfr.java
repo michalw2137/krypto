@@ -29,14 +29,15 @@ public class Szyfr {
     public void szyfruj() {
         this.outcome = new byte[(int) wiadomosc.length];
         int i = 0;
-        while( i < wiadomosc.length - wiadomosc[wiadomosc.length - 1] -1) {
+//        - wiadomosc[wiadomosc.length - 1] -1
+        while( i < wiadomosc.length ) {
             outcome[i] = (byte) (wiadomosc[i] ^ klucz[i]);
             i++;
         }
-        while( i<wiadomosc.length){
-            outcome[i] = wiadomosc[i];
-            i++;
-        }
+//        while( i<wiadomosc.length){
+//            outcome[i] = wiadomosc[i];
+//            i++;
+//        }
     }
 
 
